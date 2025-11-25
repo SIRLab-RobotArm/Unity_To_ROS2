@@ -28,7 +28,7 @@ gnome-terminal -- bash -c "echo '[TCP ENDPOINT STARTED]'; ros2 run ros_tcp_endpo
 
 # ===== TERMINAL 2 ====================================
 echo -e "${GREEN}Launching Terminal 2: IK Solver Node${RESET}"
-gnome-terminal -- bash -c "echo '[IK SOLVER NODE STARTED]'; ros2 run ik_bridge_pkg ik_solver_node; exec bash"
+gnome-terminal -- bash -c "echo '[IK SOLVER NODE STARTED]'; ros2 run ik_bridge_pkg dual_ik_solver; exec bash"
 
 
 # ===== TERMINAL 3 ====================================

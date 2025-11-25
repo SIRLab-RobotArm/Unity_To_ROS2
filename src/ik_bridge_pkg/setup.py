@@ -20,7 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'ik_solver_node = ik_bridge_pkg.ik_solver_node:main',
+            'ik_solver_node = ik_bridge_pkg.dual_ik_solver:main',
         ],
     },
 )
