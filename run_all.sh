@@ -28,7 +28,7 @@ gnome-terminal -- bash -c "echo '[TCP ENDPOINT STARTED]'; ros2 run ros_tcp_endpo
 
 # ===== TERMINAL 2 ====================================
 echo -e "${GREEN}Launching Terminal 2: IK Solver Node${RESET}"
-gnome-terminal -- bash -c "echo '[IK SOLVER NODE STARTED]'; ros2 run ik_bridge_pkg dual_ik_solver; exec bash"
+gnome-terminal -- bash -c "echo '[IK SOLVER NODE STARTED]'; ros2 run ik_bridge_pkg ik_solver_node; exec bash"
 
 
 # ===== TERMINAL 3 ====================================
@@ -42,8 +42,26 @@ gnome-terminal -- bash -c "echo '[MOVE_GROUP STARTED]'; ros2 launch open_manipul
 
 
 # ===== TERMINAL 5 ====================================
-echo -e "${GREEN}Launching Terminal 5: Debug Terminal (topic echo)${RESET}"
-gnome-terminal -- bash -c "echo '[DEBUG TERMINAL]'; ros2 topic echo /ik_joint_commands; exec bash"
+# echo -e "${GREEN}Launching Terminal 5: Debug Terminal (topic echo)${RESET}"
+#gnome-terminal -- bash -c "echo '[DEBUG TERMINAL]'; ros2 topic echo /ik_joint_commands; exec bash"
+# ===== TERMINAL 5 ====================================
+echo -e "${GREEN}Launching Terminal 5: Debug Left IK${RESET}"
+gnome-terminal -- bash -c "echo '[DEBUG LEFT IK]'; ros2 topic echo /ik_left_joint_commands; exec bash"
+
+# ===== TERMINAL 6 ====================================
+echo -e "${GREEN}Launching Terminal 6: Debug Right IK${RESET}"
+gnome-terminal -- bash -c "echo '[DEBUG RIGHT IK]'; ros2 topic echo /ik_right_joint_commands; exec bash"
+
+
+# 토픽이 나타날 때까지 기다림
+while ! ros2 topic list | grep -q '/ik_joint_commands'; do
+    sleep 1
+done
+
+echo '🔵 Topic /ik_joint_commands detected! Starting echo...';
+ros2 topic echo /ik_joint_commands;
+exec bash"
+
 
 
 echo -e "${GREEN}"
